@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const messageDiv = document.createElement("div");
         messageDiv.classList.add("message", sender === "user" ? "user-message" : "bot-message");
     
-        // Convert Markdown to HTML
+       
         messageDiv.innerHTML = marked.parse(content);
     
         chatContent.appendChild(messageDiv);
@@ -65,7 +65,7 @@ async function fetchBotResponse(userMessage) {
         }
 
         const data = await response.json();
-        appendMessage(data.response.trim(), "bot", true); // Assuming response is in Markdown format
+        appendMessage(data.response.trim(), "bot", true); 
     } catch (error) {
         removeTypingIndicator();
         appendMessage(`⚠️ Error: ${error.message}`, "bot");
