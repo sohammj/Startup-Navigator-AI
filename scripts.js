@@ -17,12 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function appendMessage(content, sender) {
-        addMessage(sender, content);
-        if (currentConversation) {
-            conversations[currentConversation].push({ sender, content });
-            localStorage.setItem("conversations", JSON.stringify(conversations));
-        }
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender === "user" ? "user-message" : "bot-message");
+    
+        // Convert Markdown to HTML
+        messageDiv.innerHTML = marked.parse(content);
+    
+        chatContent.appendChild(messageDiv);
+        chatContent.scrollTop = chatContent.scrollHeight;
     }
+    
 
     function showTypingIndicator() {
         const typingIndicator = document.createElement("div");
@@ -38,25 +42,36 @@ document.addEventListener("DOMContentLoaded", function () {
         if (typingIndicator) typingIndicator.remove();
     }
 
-    async function fetchBotResponse(userMessage) {
-        showTypingIndicator();
-        try {
-            const response = await fetch("http://127.0.0.1:8000/generate", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prompt: userMessage }),
-            });
+    const systemPrompt = `
+You are an AI mentor for solo startup founders who are building their companies. 
+Your goal is to assist founders in overcoming challenges such as idea validation, fundraising, co-founder search, product development, and company growth,etc.
+Your responses should stay strictly within this scope. DO NOT answer general AI questions or unrelated topics. 
+If a question is not relevant to startups, politely redirect the user back to startup-related discussions.
+`;
 
-            removeTypingIndicator();
-            if (!response.ok) throw new Error("Failed to fetch response");
+async function fetchBotResponse(userMessage) {
+    showTypingIndicator();
+    try {
+        const response = await fetch("http://127.0.0.1:8000/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: `${systemPrompt}\nUser: ${userMessage}\nAI:` }),
+        });
 
-            const data = await response.json();
-            appendMessage(data.response.trim(), "bot");
-        } catch (error) {
-            removeTypingIndicator();
-            appendMessage("⚠️ Error: Could not connect to the server.", "bot");
+        removeTypingIndicator();
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Failed to fetch response: ${errorMessage}`);
         }
+
+        const data = await response.json();
+        appendMessage(data.response.trim(), "bot", true); // Assuming response is in Markdown format
+    } catch (error) {
+        removeTypingIndicator();
+        appendMessage(`⚠️ Error: ${error.message}`, "bot");
     }
+}
+
 
     function createNewConversation(firstMessage) {
         const conversationName = firstMessage.slice(0, 20).trim() || "Untitled Chat";
