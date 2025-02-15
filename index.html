@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Startup Co-Founder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+    <!-- Sidebar -->
+<aside class="sidebar">
+    <h2>AI Co-Founder</h2>
+    <ul>
+        <li id="new-chat">New Chat</li>
+        <li id="save-btn">Save Conversation</li>
+        <li>Settings</li>
+        <!-- Saved Conversations List -->
+        <li>
+            <h4>Saved Conversations</h4>
+            <ul id="saved-conversations-list"></ul> <!-- This will hold the saved chat links -->
+        </li>
+    </ul>
+</aside>
+
+        <main class="chatbox">
+            <div class="chat-header">
+                <h3>Hi, How Can I Help?</h3>
+            </div>
+            <div class="chat-content" id="chat-content">
+                <div class="message bot">Welcome! How can AI support your startup journey today?</div>
+            </div>
+            <div class="chat-input-container">
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Ask AI anything...">  <!-- updated id here -->
+                    <button id="send-btn">Send</button>
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
