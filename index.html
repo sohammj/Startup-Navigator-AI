@@ -3,39 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Startup Co-Founder</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Startup Navigator AI</title>
+    <style>
+        /* Global Styles */
+        body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #111827, #1f2937, #000);
+    background-attachment: fixed;  /* Ensures the background covers the whole screen */
+    background-size: cover;  /* Makes sure it covers the entire viewport */
+    background-position: center;  /* Centers the background */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;  
+    height: 100vh;  
+    text-align: center;
+}
+
+
+        /* Hero Section */
+        .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center;
+    max-width: 800px;
+    padding: 40px;
+}
+
+
+        .hero h1 {
+            font-size: 4rem; /* Bigger Title */
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.5rem; /* Bigger Description */
+            opacity: 0.9;
+            margin: 0 auto;
+            max-width: 700px;
+            margin-bottom: 14px;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 16px 32px; /* Bigger Button */
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: #3b82f6;
+            border-radius: 12px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s;
+        }
+
+        .button:hover {
+            background: #2563eb;
+            transform: scale(1.08);
+        }
+
+        /* Footer */
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #374151;
+            opacity: 0.8;
+            position: absolute;
+            bottom: 0;
+            background: #1f2937;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <h2>SN-AI</h2>
-            <ul>
-                <li id="new-chat">New Chat</li>
-                <li>
-                    <h4>Saved Conversations</h4>
-                    <ul id="saved-conversations-list"></ul>
-                </li>
-            </ul>
-        </aside>
 
-        <main class="chatbox">
-            <div class="chat-header">
-                <h3>Startup Navigator AI</h3>
-            </div>
-            <div class="chat-content" id="chat-content">
-                <div class="message bot">Welcome! How can AI support your startup journey today?</div>
-            </div>
-            <div class="chat-input-container">
-                <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="Ask AI anything..."> 
-                    <button id="send-btn">Send</button>
-                    <div id="prompt-buttons"></div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="scripts.js"></script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Startup Navigator AI 🚀</h1>
+        <p>Validate your startup ideas, research markets, and get AI-driven insights—all in one place.</p>
+        <a href="landing.html">
+            <button class="button">Start Your Journey</button>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Built By: Anuj Iyer, Soham Joshi, Gautami Ankam.
+    </footer>
+
 </body>
 </html>
