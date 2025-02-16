@@ -73,6 +73,7 @@ async function fetchBotResponse(userMessage) {
 }
 
 
+
     function createNewConversation(firstMessage) {
         const conversationName = firstMessage.slice(0, 20).trim() || "Untitled Chat";
         let uniqueName = conversationName;
